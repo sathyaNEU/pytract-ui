@@ -41,9 +41,7 @@ if selected_pdf and selected_model:
         st.subheader("Summary")
         if st.button("Generate Summary"):
             data = {"url": pdf_endpoint, "model": selected_model}
-            st.write(data)
             response = requests.post(base_url+summarize, json=data)
-            st.write(response.json())
             if response.status_code == 200:
                 st.success(response.json().get("markdown"))
             else:
